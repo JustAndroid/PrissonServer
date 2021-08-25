@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="org.wildfly.security:wildfly-elytron-realm:1.12.1.Final" type="repository">
+    <properties maven-id="org.wildfly.security:wildfly-elytron-realm:1.12.1.Final" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-realm-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-auth-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-credential-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-asn1-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-keystore-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-provider-util-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-auth-server-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-base-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jboss-logging-3.4.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-permission-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-util-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-elytron-x500-1.12.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wildfly-common-1.5.4.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

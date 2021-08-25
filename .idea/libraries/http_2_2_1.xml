@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="http-2.2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/http-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sun-common-server.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
