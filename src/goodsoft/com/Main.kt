@@ -8,6 +8,7 @@ import goodsoft.com.extencions.setOnClickListener
 import goodsoft.com.models.Account
 import goodsoft.com.models.GameStatus
 import goodsoft.com.utils.Game
+import org.json.JSONArray
 import org.json.JSONObject
 import java.awt.Dimension
 import java.io.IOException
@@ -68,12 +69,16 @@ object Main {
         val name2 = "pidor"
         val account = Account(name, null, false, false, "_secret", 500, 3, null)
         val account_2 = Account(name2, null, false, false, "_secret", 500, 3, null)
+        val account_3 = Account("test", null, false, false, "test", 500, 3, null)
+        val account_4 = Account("test1", null, false, false, "test1", 500, 3, null)
 
 // persist the account object to the database
 
 // persist the account object to the database
         dbHelper?.accountDao?.createIfNotExists(account)
         dbHelper?.accountDao?.createIfNotExists(account_2)
+        dbHelper?.accountDao?.createIfNotExists(account_3)
+        dbHelper?.accountDao?.createIfNotExists(account_4)
 
         val tempAccounts = dbHelper?.accountDao?.queryForAll()
         dbHelper?.close()
@@ -107,13 +112,14 @@ object Main {
             mHttpServer!!.createContext("/", rootHandler)
             mHttpServer!!.createContext("/index", rootHandler)
             // Handle /messages endpoint
-            mHttpServer!!.createContext("/login", loginHandler)
+            mHttpServer!!.createContext("/auth", loginHandler)
             mHttpServer!!.createContext("/startFight", startFightHandler)
             mHttpServer!!.createContext("/setAction", setActionHandler)
             mHttpServer!!.createContext("/resetKicks", resetKicksHandler)
             mHttpServer!!.createContext("/getStatus", statusFightHandler)
             mHttpServer!!.createContext("/endRaund", endRoundHandler)
             mHttpServer!!.createContext("/endGame", endFightHandler)
+            mHttpServer!!.createContext("/fighters", fightersListHandler)
             mHttpServer!!.start()
         } catch (e: IOException) {
             e.printStackTrace()
@@ -153,6 +159,8 @@ object Main {
                     val login = jsonBody.getString("login")
                     val password = jsonBody.getString("password")
 
+                    System.out.println("SER -" + "login ${login} password ${password}")
+
                     val json = login(login, password)
 
                     sendResponse(httpExchange, json.toString())
@@ -165,7 +173,7 @@ object Main {
         val jsonObject = JSONObject()
 
         if (accounts?.containsKey(login) == true) {
-            jsonObject.put("status", true)
+            jsonObject.put("status", "success")
         }
 
         return jsonObject
@@ -524,6 +532,33 @@ object Main {
 
         return jsonObject
     }
+
+
+  private val fightersListHandler = HttpHandler { httpExchange ->
+        run {
+            when (httpExchange!!.requestMethod) {
+                "GET" -> {
+                    val json = getFightersList()
+
+                    sendResponse(httpExchange, json.toString())
+                }
+            }
+        }
+    }
+
+    private fun getFightersList(): JSONObject {
+        val jsonObject = JSONObject()
+        val jsonArray = JSONArray()
+
+        accounts?.forEach { t, u ->
+            jsonArray.put(t)
+        }
+
+        jsonObject.put("data", jsonArray)
+
+        return jsonObject
+    }
+
 
 
     fun queryToMap(query: String): Map<String, String>? {
